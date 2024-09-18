@@ -1,6 +1,6 @@
 body {
 	margin: 0 auto;
-	font-family: dotgothic;
+	font-family: arial;
 	background: silver;
 	color: white;
 }
@@ -20,7 +20,7 @@ hr {
 }
 
 img {
-	width: 100%;
+	width: 400px;
 }
 
 button {
