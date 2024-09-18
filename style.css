@@ -1,9 +1,8 @@
 body {
 	margin: 0 auto;
-	font-family: hibiya;
+	font-family: dotgothic;
 	background: silver;
 	color: white;
-	image-rendering: crisp-edges;
 }
 
 a {
@@ -11,8 +10,8 @@ a {
 }
 
 a:hover {
-	color: red;
-	background: hotpink;
+	color: lavenderblush;
+	background: linear-gradient(0deg, rgba(255,114,255,0.5) 0%, rgba(192,192,192,0) 100%);
 }
 
 hr {
@@ -20,7 +19,28 @@ hr {
 	border: solid 0.5px whitesmoke;
 }
 
+img {
+	width: 100%;
+}
+
+button {
+	font-family: hibiya;
+	background: inherit;
+	color: inherit;
+}
+
+button:hover {
+	color: white;
+	background: linear-gradient(0deg, rgba(192,192,192,1) 0%, rgba(199,178,199,1) 100%);
+}
+
+pre {
+	font-family: monospace;
+	dont-size: inherit;
+}
+
 #header {
+	font-family: hibiya;
 	position: fixed;
 	top: 20px;
 }
@@ -30,10 +50,11 @@ hr {
 	flex-direction: row;
 	height: 100vh;
 	align-items: center;
-	width: 9000px;
+	width: 200%;
 }
 
 #footer {
+	font-family: hibiya;
 	position: fixed;
 	bottom: 20px;
 }
@@ -44,8 +65,9 @@ hr {
 
 .post {
 	border: dashed 1.5px whitesmoke;
-	padding: 5px;
+	padding: 6px;
 	margin: 100px;
+	max-width: 250px;
 }
 
 @font-face {
