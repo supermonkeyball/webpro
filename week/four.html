@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+    <head>
+        <title>liliko website</title>
+        <style>
+            body {
+                display: flex; 
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            i {
+                color: magenta;
+            }
+
+            pre {
+                color: gray;
+            }
+
+            .codebox {
+                background: gainsboro;
+                width: 60%;
+                overflow: scroll;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="codebox">
+        <pre>
+  (t = [  <i>// the text that appears on screen. content //</i>
+    "credit card0piece of plastic from a bank0piece of plastic that means money in the bank0piece of plastic that means money for the bank0flyers tell me how they sponsor a weapons manufacturer",
+    "cash0money from this tech job0(at my desk, I learn all that infrastructure can do)0money will simply pass through my hands0money, God willing, will arrive in theirs",
+    "shopping bag0things to buy0for my big little life0some shampoo from conglomerates that finance a genocidal state0things to buy, & I stand paralysed in pharmacy aisles",
+    "water bottle0water and bread0a sick sack of flour0water & my favourite kind of bread0a belly of food that takes me back home",
+    "transit card0for the stupid metro0to get to class, work, my friends0to get over the river0imagine the desert",
+    "sweater0sweater for the cold0sweater as I hurry through temporary elements0sweater, touched by hands that knit & spun & sheared0in this fistful I feel my mother",
+    "passport0I’m old enough to get in the bar0passport, a formality0as a testament of where I’m from0so a permission slip to go anywhere",
+    "lip balm0lip balm for comfort0lip balm in the brittle winter0lip balm, this tiny luxury0lip balm, & the words “to younus, i will kiss you in heaven”",
+    "keys0to get home0a home, can you imagine0a life0I keep digging for a life that belongs to us all",
+  ].map((e) => e.split(0))), <i>// each line is broken apart where there are 0's. e is used for the segmented parts of t //</i>
+    (n = 5), <i>// 5 is the amount of breaks per line/item //</i>
+    (o = []); <i>// empty array //</i>
+  for (u = 0; u < n; u++) {
+    e = []; <i>// empty array (e is used for the segmented parts of t) //</i>
+    for (a = 0; a < t.length; a++) e.push(a); 
+    (e = e
+      .map((x) => ({ v: x, s: Math.random() })) <i>// randomize generated line? //</i>
+      .sort((a, b) => a.s - b.s)
+      .map((x) => x.v)),
+      o.push(e);
+  }
+  z = o[n - 1].findIndex((e) => e == t.length - 1);
+  o[n - 1].splice(z, 1), o[n - 1].push(t.length - 1);
+  (d = document),
+    (b = d[(q = "querySelector")]("#b")), <i>// selects b div //</i>
+    (l = d[q]("#l")), <i>// button is l div //</i>
+    (r = h = 0);
+  l.onclick = () => { <i>// when button is pressed ... //</i>
+    if (r) {
+      (e = o[r][h]), (a = b.querySelectorAll("p")[e]), (i = t[e][r]);
+      (a.innerHTML += `—<'i>${i}<'/i>`),
+        h++,
+        h == t.length && (r++, (h = 0), r == o.length && l.remove());
+    } else
+      (b.innerHTML += `<'p><'/i>${t[h][r]}<'/i><'/p>`),
+        h++,
+        h == t.length && (r++, (h = 0));
+  };
+</pre>
+</div>
+
+<div style="width: 40%; padding: 30px">
+<p>my code breakdown is written in <i>pink</i><br><br>
+    i had trouble with keeping track of the variables. they are named pretty vaguely and i lost track of their purposes frequently. i did have to guess with some of them. i hope that i will have a better understanding of this code after the class meeting!</p>
+<p><a href="../index.html">back</a></p>
+</div>
+    </body>
+</html>
+
+
