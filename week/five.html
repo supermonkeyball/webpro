@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		body {
+			margin: 0 auto;
+			background: gainsboro;
+			font-size: 5em;
+			line-height: 0.4em;
+			font-family: times;
+		}
+
+		#button_container {
+			position: fixed; 
+			z-index: 999;
+			top: 50%; 
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+
+		#container {
+			width: 100%;
+			z-index: 998;
+   			background: url(../assets/img/blinkgirl.webp); 
+   			background-size: cover;
+   			-webkit-background-clip: text;
+   			-webkit-text-fill-color: transparent;
+   			font-weight: bold;
+   			overflow-wrap: break-word;
+		}
+	</style>
+</head>
+<body>
+		<div id="button_container">
+			<button id="botan">click</button>
+		</div>
+		<div id="screen"></div>
+		<div id="container"></div>
+
+	<script>
+		const button = document.getElementById('botan');
+		const container = document.getElementById('container');
+
+		const index = ['one0two0three0four0five0six0seven', 'fish0cow0friend0sister0brother0neighbor0dog0cat0lizard', 'red0blue0green0', 'is0can0if0but0my0was0be0for']; // my items
+		let holder = {};  //holds segments
+
+		function appear() {
+		    const item = Math.floor(Math.random() * index.length); //randomly pulls an item
+		    const target = index[item];
+
+		    if (holder[item] === undefined) { //sets up holder. 0 so it starts at beginning of segment (one, red, is, etc)
+		        holder[item] = 0; 
+		    }
+
+		    const segments = target.split('0');  //splits item where there are 0s. creates segments
+
+		    if (holder[item] < segments.length) {
+		        const text = document.createElement('span'); //creates span element, this is where text will go
+		        text.textContent = segments[holder[item]]; //span content
+		        container.appendChild(text); //adds content to the container
+
+		        holder[item]++; //counts up so next part of segment is used when button is clicked
+		    } else {
+		        holder[item] = 0; //resets item once it reaches the last segment
+		    }
+		}
+
+		button.addEventListener('click', appear);
+	</script>
+</body>
+</html>
