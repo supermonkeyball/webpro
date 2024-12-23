@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pokedex</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: monospace;
+            margin-top: 10%;
+        }
+
+        .container {
+            display: flex;
+            width: 50%;
+            height: 50vh;
+            border: groove gainsboro 3px;
+        }
+
+        .pokemon-list {
+            width: 30%;
+            height: 100%;
+            overflow-y: scroll;
+            height: 50vh;
+        }
+
+        .pokemon-item {
+            background-color: whitesmoke;
+            margin: 10px;
+            border: outset 3px whitesmoke;
+            cursor: pointer;
+            text-align: center;
+            padding: 3px;
+            text-transform: lowercase;
+        }
+
+        .pokemon-item:hover {
+            background-color: gainsboro;
+            border: inset 3px gainsboro;
+        }
+
+        .pokemon-info {
+            width: 100%;
+        }
+
+        .pokemon-info img {
+            width: auto;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pokemon-list" id="pokemon-list">
+        </div>
+
+        <div class="pokemon-info" id="pokemon-info">
+            <center><img id="pokemon-image" src="" alt="">
+            <p id="pokemon-number"></p> 
+            <p id="pokemon-types"></p>
+            </center>
+        </div>
+    </div>
+
+    <div style="margin: 50px">
+        <a href="../index.html">back to index</a>
+    </div>
+
+    <script>
+        async function fetchPokemonList() {
+            const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
+            const data = await response.json();
+            const pokemonListContainer = document.getElementById('pokemon-list');
+            
+            data.results.forEach(pokemon => {
+                const pokemonItem = document.createElement('div');
+                pokemonItem.classList.add('pokemon-item');
+                pokemonItem.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+                
+                pokemonItem.addEventListener('click', () => {
+                    fetchPokemonDetails(pokemon.url);
+                });
+
+                pokemonListContainer.appendChild(pokemonItem);
+            });
+        }
+
+        async function fetchPokemonDetails(url) {
+            const response = await fetch(url);
+            const data = await response.json();  
+
+            document.getElementById('pokemon-image').src = data.sprites.front_default;
+            document.getElementById('pokemon-number').textContent = `dex number: #${data.id}`;
+            document.getElementById('pokemon-types').textContent = `type: ${data.types.map(type => type.type.name).join(', ')}`;
+        }
+
+        fetchPokemonList();
+    </script>
+
+</body>
+</html>

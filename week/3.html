@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+	<head>
+		<title>liliko website</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+		<style>
+			body {
+				margin: 0;
+				display: grid;
+				grid-template-rows: 1fr 2fr 2fr 2fr 2fr 2fr;
+				grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr;
+			}
+
+			model-viewer {
+  			width: 300px;
+  			height: 300px;
+			}
+
+			#week3 {
+				width: 500px;
+				height: 500px;
+			}
+		</style>
+	</head>
+
+	<body>
+			<div class="item" style="grid-column: 1/2; grid-row: 1/2">
+		    <model-viewer
+              src="https://cdn.glitch.global/f991fb0b-d232-4af4-8263-8db275e14328/backbutton.glb?v=1726685962744"
+              disable-zoom
+              ar-modes="webxr scene-viewer quick-look"
+              camera-controls
+              environment-image="neutral"
+              shadow-intensity="0"
+              id="back"
+            ></model-viewer>
+        </div>
+
+        <div class="item" style="grid-column: 4/5; grid-row: 2/3">
+            <model-viewer
+              src="https://cdn.glitch.global/f991fb0b-d232-4af4-8263-8db275e14328/week3.glb?v=1726686023151"
+              disable-zoom
+              ar-modes="webxr scene-viewer quick-look"
+              camera-controls
+              environment-image="neutral"
+              shadow-intensity="0"
+              id="week3"
+            ></model-viewer>
+        	</div>
+
+        <div class="item" style="grid-column: 3/4; grid-row: 1/2">
+            <model-viewer
+              src="https://cdn.glitch.global/f991fb0b-d232-4af4-8263-8db275e14328/nyquil.glb?v=1653033106947"
+              disable-zoom
+              ar-modes="webxr scene-viewer quick-look"
+              camera-controls
+              environment-image="neutral"
+              shadow-intensity="0"
+            ></model-viewer>
+        	</div>
+
+        	<div class="item" style="grid-column: 4/5; grid-row: 1/2">
+            <model-viewer
+              src="https://cdn.glitch.global/f991fb0b-d232-4af4-8263-8db275e14328/chicken.glb?v=1653031466254"
+              disable-zoom
+              ar-modes="webxr scene-viewer quick-look"
+              camera-controls
+              environment-image="neutral"
+              shadow-intensity="0"
+            ></model-viewer>
+        	</div>
+
+        <div class="item" style="grid-column: 2/3; grid-row: 2/3">
+            <model-viewer
+              src="https://cdn.glitch.global/f991fb0b-d232-4af4-8263-8db275e14328/hydrant.glb?v=1653032478999"
+              disable-zoom
+              ar-modes="webxr scene-viewer quick-look"
+              camera-controls
+              environment-image="neutral"
+              shadow-intensity="0"
+            ></model-viewer>
+        	</div>
+
+    		<script>
+        		function go_home() {
+            		console.log("clicked");
+            		window.location.href = "../index.html"; 
+        		}
+
+
+
+       			 const back = document.getElementById("back");
+        		 back.addEventListener("click", go_home);
+    </script>
+
+		<script>
+				let cam;
+				let x = 0;
+
+				function setup() {
+  				createCanvas(windowWidth, windowHeight);
+  				document.querySelector('canvas').style.zIndex = "-1";
+  				document.querySelector('canvas').style.position = "fixed";
+  				document.querySelector('canvas').style.top = "0";
+  				document.querySelector('canvas').style.left = "0";
+  				cam = createCapture(VIDEO);
+  				cam.size(windowWidth, windowHeight);
+  				cam.hide();
+  				frameRate(30)
+				}
+
+				function draw() {
+ 				stroke(255, 0, 0, 50)
+  				copy(cam, x, 0, 1, height, x, 0, 1, height);
+  				x++;
+				}
+
+				function windowResized() {
+					resizeCanvas(windowWidth, windowHeight);
+				}
+			</script>
+	</body>
+
+</html>
